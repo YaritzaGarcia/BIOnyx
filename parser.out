@@ -1,0 +1,259 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> INFOID FINVOCATION STRING COMMA LBRACKET RBRACKET FINISHER
+Rule 2     expression -> MODEL FINVOCATION STRING FINISHER
+Rule 3     expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER
+Rule 4     expression -> NUMBER PLUS NUMBER
+Rule 5     expression -> NUMBER MINUS NUMBER
+Rule 6     expression -> NUMBER TIMES NUMBER
+Rule 7     expression -> NUMBER DIVIDE NUMBER
+Rule 8     expression -> ID
+
+Terminals, with rules where they appear
+
+COMMA                : 1 3
+DIVIDE               : 7
+FINISHER             : 1 2 3
+FINVOCATION          : 1 2 3
+GETFILE              : 3
+ID                   : 8
+INFOID               : 1
+LBRACKET             : 1
+MINUS                : 5
+MODEL                : 2
+NUMBER               : 4 4 5 5 6 6 7 7
+PLUS                 : 4
+RBRACKET             : 1
+STRING               : 1 2 3 3
+TIMES                : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . INFOID FINVOCATION STRING COMMA LBRACKET RBRACKET FINISHER
+    (2) expression -> . MODEL FINVOCATION STRING FINISHER
+    (3) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (4) expression -> . NUMBER PLUS NUMBER
+    (5) expression -> . NUMBER MINUS NUMBER
+    (6) expression -> . NUMBER TIMES NUMBER
+    (7) expression -> . NUMBER DIVIDE NUMBER
+    (8) expression -> . ID
+
+    INFOID          shift and go to state 2
+    MODEL           shift and go to state 3
+    GETFILE         shift and go to state 4
+    NUMBER          shift and go to state 5
+    ID              shift and go to state 6
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> INFOID . FINVOCATION STRING COMMA LBRACKET RBRACKET FINISHER
+
+    FINVOCATION     shift and go to state 7
+
+
+state 3
+
+    (2) expression -> MODEL . FINVOCATION STRING FINISHER
+
+    FINVOCATION     shift and go to state 8
+
+
+state 4
+
+    (3) expression -> GETFILE . FINVOCATION STRING COMMA STRING FINISHER
+
+    FINVOCATION     shift and go to state 9
+
+
+state 5
+
+    (4) expression -> NUMBER . PLUS NUMBER
+    (5) expression -> NUMBER . MINUS NUMBER
+    (6) expression -> NUMBER . TIMES NUMBER
+    (7) expression -> NUMBER . DIVIDE NUMBER
+
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+
+
+state 6
+
+    (8) expression -> ID .
+
+    $end            reduce using rule 8 (expression -> ID .)
+
+
+state 7
+
+    (1) expression -> INFOID FINVOCATION . STRING COMMA LBRACKET RBRACKET FINISHER
+
+    STRING          shift and go to state 14
+
+
+state 8
+
+    (2) expression -> MODEL FINVOCATION . STRING FINISHER
+
+    STRING          shift and go to state 15
+
+
+state 9
+
+    (3) expression -> GETFILE FINVOCATION . STRING COMMA STRING FINISHER
+
+    STRING          shift and go to state 16
+
+
+state 10
+
+    (4) expression -> NUMBER PLUS . NUMBER
+
+    NUMBER          shift and go to state 17
+
+
+state 11
+
+    (5) expression -> NUMBER MINUS . NUMBER
+
+    NUMBER          shift and go to state 18
+
+
+state 12
+
+    (6) expression -> NUMBER TIMES . NUMBER
+
+    NUMBER          shift and go to state 19
+
+
+state 13
+
+    (7) expression -> NUMBER DIVIDE . NUMBER
+
+    NUMBER          shift and go to state 20
+
+
+state 14
+
+    (1) expression -> INFOID FINVOCATION STRING . COMMA LBRACKET RBRACKET FINISHER
+
+    COMMA           shift and go to state 21
+
+
+state 15
+
+    (2) expression -> MODEL FINVOCATION STRING . FINISHER
+
+    FINISHER        shift and go to state 22
+
+
+state 16
+
+    (3) expression -> GETFILE FINVOCATION STRING . COMMA STRING FINISHER
+
+    COMMA           shift and go to state 23
+
+
+state 17
+
+    (4) expression -> NUMBER PLUS NUMBER .
+
+    $end            reduce using rule 4 (expression -> NUMBER PLUS NUMBER .)
+
+
+state 18
+
+    (5) expression -> NUMBER MINUS NUMBER .
+
+    $end            reduce using rule 5 (expression -> NUMBER MINUS NUMBER .)
+
+
+state 19
+
+    (6) expression -> NUMBER TIMES NUMBER .
+
+    $end            reduce using rule 6 (expression -> NUMBER TIMES NUMBER .)
+
+
+state 20
+
+    (7) expression -> NUMBER DIVIDE NUMBER .
+
+    $end            reduce using rule 7 (expression -> NUMBER DIVIDE NUMBER .)
+
+
+state 21
+
+    (1) expression -> INFOID FINVOCATION STRING COMMA . LBRACKET RBRACKET FINISHER
+
+    LBRACKET        shift and go to state 24
+
+
+state 22
+
+    (2) expression -> MODEL FINVOCATION STRING FINISHER .
+
+    $end            reduce using rule 2 (expression -> MODEL FINVOCATION STRING FINISHER .)
+
+
+state 23
+
+    (3) expression -> GETFILE FINVOCATION STRING COMMA . STRING FINISHER
+
+    STRING          shift and go to state 25
+
+
+state 24
+
+    (1) expression -> INFOID FINVOCATION STRING COMMA LBRACKET . RBRACKET FINISHER
+
+    RBRACKET        shift and go to state 26
+
+
+state 25
+
+    (3) expression -> GETFILE FINVOCATION STRING COMMA STRING . FINISHER
+
+    FINISHER        shift and go to state 27
+
+
+state 26
+
+    (1) expression -> INFOID FINVOCATION STRING COMMA LBRACKET RBRACKET . FINISHER
+
+    FINISHER        shift and go to state 28
+
+
+state 27
+
+    (3) expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .
+
+    $end            reduce using rule 3 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
+
+
+state 28
+
+    (1) expression -> INFOID FINVOCATION STRING COMMA LBRACKET RBRACKET FINISHER .
+
+    $end            reduce using rule 1 (expression -> INFOID FINVOCATION STRING COMMA LBRACKET RBRACKET FINISHER .)
+

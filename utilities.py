@@ -34,7 +34,6 @@ def infoID(ID):
 
 # print(infoID("6VOY"))
 
-
 def model(ID):
     # Searching for the pdb file
     pdbServer = PDBList()
@@ -49,4 +48,10 @@ def model(ID):
     idModel = nv.show_biopython(idStructure)
     return(idModel)
 
-model("2FAT")
+# model("2FAT")
+
+def getFile(ID, path):
+    # Searching for the pdb file
+    pdbServer = PDBList()
+    pdbServer.retrieve_pdb_file(ID, pdir=path, file_format='mmCif')
+    print("The file has been saved in " + path)
