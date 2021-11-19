@@ -1,4 +1,5 @@
 import ply.lex as lex
+import re
 
 # BIOnyx Tokens
 # This is a list with all the token names of BIOnyx
@@ -20,7 +21,7 @@ tokens = [
 
 # BIOnyx Reserved Words
 reserved = {
-    'infoId': 'INFOID',
+    'infoID': 'INFOID',
     'model': 'MODEL',
     'getFile': 'GETFILE'
 }
@@ -38,29 +39,37 @@ t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     if t.value in reserved:
-        t.type = reserved[ t.value ]
+        t.type = reserved[t.value]
     return t
 
 # Rule for turn string into numbers
+
+
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-# Defining rules for reserved words
+# LexToken(STRING,'1atp", "C:\\Users\\User\\Desktop',1,11)
+
+
 def t_STRING(t):
-    r'(\".*\")'
+    r'(\"([^"]*)\")'
     t.value = t.value[1:-1]
 
     return t
 
 # Define a rule to track line numbers
+
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -74,6 +83,7 @@ def t_error(t):
 # Build the lexer
 lexer = lex.lex()
 
+
 def codeFile(file):
     # read the code in the file
     file = open(file, "r")
@@ -81,12 +91,12 @@ def codeFile(file):
     file.close()
     return(lines)
 
+
 lexer.input(codeFile("BIOnyxCode.bx"))
 
 # Tokenize
 while True:
     tok = lexer.token()
     if not tok:
-        break      # No more input  
-    print(tok)
-    
+        break      # No more input
+    # print(tok)

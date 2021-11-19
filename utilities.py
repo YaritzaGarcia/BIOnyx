@@ -27,12 +27,12 @@ import ipywidgets as widget
 def infoID(ID):
     idPdb = PDBList()
     idPdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
-    parser = PDBParser(QUIET=True)
+    mmcif_Parser = MMCIFParser(QUIET=True)
     fileName = ID + ".cif"
-    return parser.get_structure(ID, fileName.lower()).get_full_id
+    structure = mmcif_Parser.get_structure(ID, fileName.lower())
+    return len(structure.get_residues())
 
-
-# print(infoID("6VOY"))
+# print(infoID("1atp"))
 
 def model(ID):
     # Searching for the pdb file
@@ -48,7 +48,7 @@ def model(ID):
     idModel = nv.show_biopython(idStructure)
     return(idModel)
 
-# model("2FAT")
+model("2FAT")
 
 def getFile(ID, path):
     # Searching for the pdb file
