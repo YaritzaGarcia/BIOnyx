@@ -1,5 +1,6 @@
 from Bio.PDB import *
 import nglview as nv
+import ipywidgets as widget
 
 
 # # https://www.tutorialspoint.com/biopython/biopython_pdb_module.htm
@@ -46,7 +47,6 @@ def model(ID):
 
     # Modeling the protein structure
     idModel = nv.show_biopython(idStructure)
-    idModel
-
+    return(idModel)
 
 model("2FAT")
