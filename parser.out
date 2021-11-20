@@ -7,28 +7,30 @@ Rule 1     expression -> INFOID FINVOCATION STRING FINISHER
 Rule 2     expression -> MODEL FINVOCATION STRING FINISHER
 Rule 3     expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER
 Rule 4     expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-Rule 5     expression -> NUMBER PLUS NUMBER
-Rule 6     expression -> NUMBER MINUS NUMBER
-Rule 7     expression -> NUMBER TIMES NUMBER
-Rule 8     expression -> NUMBER DIVIDE NUMBER
-Rule 9     expression -> ID
+Rule 5     expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+Rule 6     expression -> NUMBER PLUS NUMBER
+Rule 7     expression -> NUMBER MINUS NUMBER
+Rule 8     expression -> NUMBER TIMES NUMBER
+Rule 9     expression -> NUMBER DIVIDE NUMBER
+Rule 10    expression -> ID
 
 Terminals, with rules where they appear
 
 COMMA                : 3
-DIVIDE               : 8
-FINISHER             : 1 2 3 4
-FINVOCATION          : 1 2 3 4
+DIVIDE               : 9
+FINISHER             : 1 2 3 4 5
+FINVOCATION          : 1 2 3 4 5
+GETAMINOACIDSINFO    : 5
 GETFILE              : 3
 GETPOLYPEPTIDES      : 4
-ID                   : 9
+ID                   : 10
 INFOID               : 1
-MINUS                : 6
+MINUS                : 7
 MODEL                : 2
-NUMBER               : 5 5 6 6 7 7 8 8
-PLUS                 : 5
-STRING               : 1 2 3 3 4
-TIMES                : 7
+NUMBER               : 6 6 7 7 8 8 9 9
+PLUS                 : 6
+STRING               : 1 2 3 3 4 5
+TIMES                : 8
 error                : 
 
 Nonterminals, with rules where they appear
@@ -44,18 +46,20 @@ state 0
     (2) expression -> . MODEL FINVOCATION STRING FINISHER
     (3) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
     (4) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (5) expression -> . NUMBER PLUS NUMBER
-    (6) expression -> . NUMBER MINUS NUMBER
-    (7) expression -> . NUMBER TIMES NUMBER
-    (8) expression -> . NUMBER DIVIDE NUMBER
-    (9) expression -> . ID
+    (5) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (6) expression -> . NUMBER PLUS NUMBER
+    (7) expression -> . NUMBER MINUS NUMBER
+    (8) expression -> . NUMBER TIMES NUMBER
+    (9) expression -> . NUMBER DIVIDE NUMBER
+    (10) expression -> . ID
 
     INFOID          shift and go to state 2
     MODEL           shift and go to state 3
     GETFILE         shift and go to state 4
     GETPOLYPEPTIDES shift and go to state 5
-    NUMBER          shift and go to state 6
-    ID              shift and go to state 7
+    GETAMINOACIDSINFO shift and go to state 6
+    NUMBER          shift and go to state 7
+    ID              shift and go to state 8
 
     expression                     shift and go to state 1
 
@@ -69,198 +73,226 @@ state 2
 
     (1) expression -> INFOID . FINVOCATION STRING FINISHER
 
-    FINVOCATION     shift and go to state 8
+    FINVOCATION     shift and go to state 9
 
 
 state 3
 
     (2) expression -> MODEL . FINVOCATION STRING FINISHER
 
-    FINVOCATION     shift and go to state 9
+    FINVOCATION     shift and go to state 10
 
 
 state 4
 
     (3) expression -> GETFILE . FINVOCATION STRING COMMA STRING FINISHER
 
-    FINVOCATION     shift and go to state 10
+    FINVOCATION     shift and go to state 11
 
 
 state 5
 
     (4) expression -> GETPOLYPEPTIDES . FINVOCATION STRING FINISHER
 
-    FINVOCATION     shift and go to state 11
+    FINVOCATION     shift and go to state 12
 
 
 state 6
 
-    (5) expression -> NUMBER . PLUS NUMBER
-    (6) expression -> NUMBER . MINUS NUMBER
-    (7) expression -> NUMBER . TIMES NUMBER
-    (8) expression -> NUMBER . DIVIDE NUMBER
+    (5) expression -> GETAMINOACIDSINFO . FINVOCATION STRING FINISHER
 
-    PLUS            shift and go to state 12
-    MINUS           shift and go to state 13
-    TIMES           shift and go to state 14
-    DIVIDE          shift and go to state 15
+    FINVOCATION     shift and go to state 13
 
 
 state 7
 
-    (9) expression -> ID .
+    (6) expression -> NUMBER . PLUS NUMBER
+    (7) expression -> NUMBER . MINUS NUMBER
+    (8) expression -> NUMBER . TIMES NUMBER
+    (9) expression -> NUMBER . DIVIDE NUMBER
 
-    $end            reduce using rule 9 (expression -> ID .)
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
 
 
 state 8
 
-    (1) expression -> INFOID FINVOCATION . STRING FINISHER
+    (10) expression -> ID .
 
-    STRING          shift and go to state 16
+    $end            reduce using rule 10 (expression -> ID .)
 
 
 state 9
 
-    (2) expression -> MODEL FINVOCATION . STRING FINISHER
-
-    STRING          shift and go to state 17
-
-
-state 10
-
-    (3) expression -> GETFILE FINVOCATION . STRING COMMA STRING FINISHER
+    (1) expression -> INFOID FINVOCATION . STRING FINISHER
 
     STRING          shift and go to state 18
 
 
-state 11
+state 10
 
-    (4) expression -> GETPOLYPEPTIDES FINVOCATION . STRING FINISHER
+    (2) expression -> MODEL FINVOCATION . STRING FINISHER
 
     STRING          shift and go to state 19
 
 
+state 11
+
+    (3) expression -> GETFILE FINVOCATION . STRING COMMA STRING FINISHER
+
+    STRING          shift and go to state 20
+
+
 state 12
 
-    (5) expression -> NUMBER PLUS . NUMBER
+    (4) expression -> GETPOLYPEPTIDES FINVOCATION . STRING FINISHER
 
-    NUMBER          shift and go to state 20
+    STRING          shift and go to state 21
 
 
 state 13
 
-    (6) expression -> NUMBER MINUS . NUMBER
+    (5) expression -> GETAMINOACIDSINFO FINVOCATION . STRING FINISHER
 
-    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
 
 
 state 14
 
-    (7) expression -> NUMBER TIMES . NUMBER
-
-    NUMBER          shift and go to state 22
-
-
-state 15
-
-    (8) expression -> NUMBER DIVIDE . NUMBER
+    (6) expression -> NUMBER PLUS . NUMBER
 
     NUMBER          shift and go to state 23
 
 
+state 15
+
+    (7) expression -> NUMBER MINUS . NUMBER
+
+    NUMBER          shift and go to state 24
+
+
 state 16
 
-    (1) expression -> INFOID FINVOCATION STRING . FINISHER
+    (8) expression -> NUMBER TIMES . NUMBER
 
-    FINISHER        shift and go to state 24
+    NUMBER          shift and go to state 25
 
 
 state 17
 
-    (2) expression -> MODEL FINVOCATION STRING . FINISHER
+    (9) expression -> NUMBER DIVIDE . NUMBER
 
-    FINISHER        shift and go to state 25
+    NUMBER          shift and go to state 26
 
 
 state 18
 
-    (3) expression -> GETFILE FINVOCATION STRING . COMMA STRING FINISHER
-
-    COMMA           shift and go to state 26
-
-
-state 19
-
-    (4) expression -> GETPOLYPEPTIDES FINVOCATION STRING . FINISHER
+    (1) expression -> INFOID FINVOCATION STRING . FINISHER
 
     FINISHER        shift and go to state 27
 
 
+state 19
+
+    (2) expression -> MODEL FINVOCATION STRING . FINISHER
+
+    FINISHER        shift and go to state 28
+
+
 state 20
 
-    (5) expression -> NUMBER PLUS NUMBER .
+    (3) expression -> GETFILE FINVOCATION STRING . COMMA STRING FINISHER
 
-    $end            reduce using rule 5 (expression -> NUMBER PLUS NUMBER .)
+    COMMA           shift and go to state 29
 
 
 state 21
 
-    (6) expression -> NUMBER MINUS NUMBER .
+    (4) expression -> GETPOLYPEPTIDES FINVOCATION STRING . FINISHER
 
-    $end            reduce using rule 6 (expression -> NUMBER MINUS NUMBER .)
+    FINISHER        shift and go to state 30
 
 
 state 22
 
-    (7) expression -> NUMBER TIMES NUMBER .
+    (5) expression -> GETAMINOACIDSINFO FINVOCATION STRING . FINISHER
 
-    $end            reduce using rule 7 (expression -> NUMBER TIMES NUMBER .)
+    FINISHER        shift and go to state 31
 
 
 state 23
 
-    (8) expression -> NUMBER DIVIDE NUMBER .
+    (6) expression -> NUMBER PLUS NUMBER .
 
-    $end            reduce using rule 8 (expression -> NUMBER DIVIDE NUMBER .)
+    $end            reduce using rule 6 (expression -> NUMBER PLUS NUMBER .)
 
 
 state 24
+
+    (7) expression -> NUMBER MINUS NUMBER .
+
+    $end            reduce using rule 7 (expression -> NUMBER MINUS NUMBER .)
+
+
+state 25
+
+    (8) expression -> NUMBER TIMES NUMBER .
+
+    $end            reduce using rule 8 (expression -> NUMBER TIMES NUMBER .)
+
+
+state 26
+
+    (9) expression -> NUMBER DIVIDE NUMBER .
+
+    $end            reduce using rule 9 (expression -> NUMBER DIVIDE NUMBER .)
+
+
+state 27
 
     (1) expression -> INFOID FINVOCATION STRING FINISHER .
 
     $end            reduce using rule 1 (expression -> INFOID FINVOCATION STRING FINISHER .)
 
 
-state 25
+state 28
 
     (2) expression -> MODEL FINVOCATION STRING FINISHER .
 
     $end            reduce using rule 2 (expression -> MODEL FINVOCATION STRING FINISHER .)
 
 
-state 26
+state 29
 
     (3) expression -> GETFILE FINVOCATION STRING COMMA . STRING FINISHER
 
-    STRING          shift and go to state 28
+    STRING          shift and go to state 32
 
 
-state 27
+state 30
 
     (4) expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .
 
     $end            reduce using rule 4 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
 
 
-state 28
+state 31
+
+    (5) expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .
+
+    $end            reduce using rule 5 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
+
+
+state 32
 
     (3) expression -> GETFILE FINVOCATION STRING COMMA STRING . FINISHER
 
-    FINISHER        shift and go to state 29
+    FINISHER        shift and go to state 33
 
 
-state 29
+state 33
 
     (3) expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .
 

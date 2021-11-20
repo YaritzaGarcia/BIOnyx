@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from lexicalAnalyzer import tokens
-from utilities import getPolypeptides, model, infoID, getFile
+from utilities import getPolypeptides, model, infoID, getFile, getAminoAcidsInfo
 
 def p_expression_infoID(p):
     # infoID -> "1atp", ["name", "sequence", "aminoAcids"];"
@@ -21,6 +21,11 @@ def p_expression_getPolypeptides(p):
     # getPolypeptides -> "1atp";
     'expression : GETPOLYPEPTIDES FINVOCATION STRING FINISHER'
     getPolypeptides(p[3])
+
+def p_expression_getAminoAcidsInfo(p):
+    # getPolypeptides -> "1atp";
+    'expression : GETAMINOACIDSINFO FINVOCATION STRING FINISHER'
+    getAminoAcidsInfo(p[3])
 
 def p_expression_plus(p):
     'expression : NUMBER PLUS NUMBER'
@@ -45,7 +50,6 @@ def p_expression_id(p):
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
-
 
 # Build the parser
 parser = yacc.yacc()

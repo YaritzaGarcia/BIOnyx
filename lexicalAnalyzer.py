@@ -21,7 +21,8 @@ reserved = {
     'infoID': 'INFOID',
     'model': 'MODEL',
     'getFile': 'GETFILE',
-    'getPolypeptides': 'GETPOLYPEPTIDES'
+    'getPolypeptides': 'GETPOLYPEPTIDES',
+    'getAminoAcidsInfo' : 'GETAMINOACIDSINFO'
 }
 
 tokens = tokens + list(reserved.values())
