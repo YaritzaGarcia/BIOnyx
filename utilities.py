@@ -1,6 +1,7 @@
 from Bio.PDB import *
+from Bio.PDB import MMCIF2Dict
 import nglview as nv
-import ipywidgets as widget
+import ipywidgets
 
 
 # # https://www.tutorialspoint.com/biopython/biopython_pdb_module.htm
@@ -29,10 +30,25 @@ def infoID(ID):
     idPdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
     mmcif_Parser = MMCIFParser(QUIET=True)
     fileName = ID + ".cif"
-    structure = mmcif_Parser.get_structure(ID, fileName.lower())
-    return len(structure.get_residues())
+# The fastest way to access protein structure information
+# is through the header, a metadata dictionary,
+# available in both PDB and CIF format.
+    # structure = mmcif_Parser.get_structure(ID, fileName.lower())
+    # _pdbx_entry_details.nonpolymer_details
+    # _pdbx_struct_mod_residue.details
+    # _pdbx_struct_mod_residue.details (funcion structural details )
+    # _struct_biol.details (biological structural details )
+    # _struct.title (name of the protein based on id function )
+    # mmcif_dict = MMCIF2Dict.MMCIF2Dict(fileName.lower())
+    # for k, v in mmcif_dict.items():
+    #     print(k,v)
+    idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
+    return Selection.unfold_entities(idStructure, "R")  # R is for residues
+    # return len(mmcif_dict)  # 689
 
-# print(infoID("1atp"))
+
+print(infoID("1fat"))
+
 
 def model(ID):
     # Searching for the pdb file
@@ -48,7 +64,9 @@ def model(ID):
     idModel = nv.show_biopython(idStructure)
     return(idModel)
 
-model("2FAT")
+
+# model("2FAT")
+
 
 def getFile(ID, path):
     # Searching for the pdb file
