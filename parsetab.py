@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COMMA DIVIDE FINISHER FINVOCATION GETAMINOACIDSINFO GETFILE GETPOLYPEPTIDES ID INFOID MINUS MODEL NUMBER PLUS STRING TIMESexpression : INFOID FINVOCATION STRING FINISHERexpression : MODEL FINVOCATION STRING FINISHERexpression : GETFILE FINVOCATION STRING COMMA STRING FINISHERexpression : GETPOLYPEPTIDES FINVOCATION STRING FINISHERexpression : GETAMINOACIDSINFO FINVOCATION STRING FINISHERexpression : NUMBER PLUS NUMBERexpression : NUMBER MINUS NUMBERexpression : NUMBER TIMES NUMBERexpression : NUMBER DIVIDE NUMBERexpression : ID'
+_lr_signature = 'COMMA DICTIONARY DIVIDE EQUALS FINISHER FINVOCATION GETAMINOACIDSINFO GETFILE GETPOLYPEPTIDES IDENTIFIER INFOID MINUS MODEL NUMBER PLUS STRING TIMESstatement : IDENTIFIER EQUALS expressionstatement : expressionexpression : IDENTIFIERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression TIMES expressionexpression : expression DIVIDE expressionexpression : NUMBERexpression : STRINGexpression : DICTIONARYexpression : INFOID FINVOCATION STRING FINISHERexpression : MODEL FINVOCATION STRING FINISHERexpression : GETFILE FINVOCATION STRING COMMA STRING FINISHERexpression : GETPOLYPEPTIDES FINVOCATION STRING FINISHERexpression : GETAMINOACIDSINFO FINVOCATION STRING FINISHER'
     
-_lr_action_items = {'INFOID':([0,],[2,]),'MODEL':([0,],[3,]),'GETFILE':([0,],[4,]),'GETPOLYPEPTIDES':([0,],[5,]),'GETAMINOACIDSINFO':([0,],[6,]),'NUMBER':([0,14,15,16,17,],[7,23,24,25,26,]),'ID':([0,],[8,]),'$end':([1,8,23,24,25,26,27,28,30,31,33,],[0,-10,-6,-7,-8,-9,-1,-2,-4,-5,-3,]),'FINVOCATION':([2,3,4,5,6,],[9,10,11,12,13,]),'PLUS':([7,],[14,]),'MINUS':([7,],[15,]),'TIMES':([7,],[16,]),'DIVIDE':([7,],[17,]),'STRING':([9,10,11,12,13,29,],[18,19,20,21,22,32,]),'FINISHER':([18,19,21,22,32,],[27,28,30,31,33,]),'COMMA':([20,],[29,]),}
+_lr_action_items = {'IDENTIFIER':([0,12,13,14,15,16,],[2,22,22,22,22,22,]),'NUMBER':([0,12,13,14,15,16,],[4,4,4,4,4,4,]),'STRING':([0,12,13,14,15,16,17,18,19,20,21,35,],[5,5,5,5,5,5,28,29,30,31,32,38,]),'DICTIONARY':([0,12,13,14,15,16,],[6,6,6,6,6,6,]),'INFOID':([0,12,13,14,15,16,],[7,7,7,7,7,7,]),'MODEL':([0,12,13,14,15,16,],[8,8,8,8,8,8,]),'GETFILE':([0,12,13,14,15,16,],[9,9,9,9,9,9,]),'GETPOLYPEPTIDES':([0,12,13,14,15,16,],[10,10,10,10,10,10,]),'GETAMINOACIDSINFO':([0,12,13,14,15,16,],[11,11,11,11,11,11,]),'$end':([1,2,3,4,5,6,22,23,24,25,26,27,33,34,36,37,39,],[0,-3,-2,-8,-9,-10,-3,-1,-4,-5,-6,-7,-11,-12,-14,-15,-13,]),'EQUALS':([2,],[12,]),'PLUS':([2,3,4,5,6,22,23,24,25,26,27,33,34,36,37,39,],[-3,13,-8,-9,-10,-3,13,13,13,13,13,-11,-12,-14,-15,-13,]),'MINUS':([2,3,4,5,6,22,23,24,25,26,27,33,34,36,37,39,],[-3,14,-8,-9,-10,-3,14,14,14,14,14,-11,-12,-14,-15,-13,]),'TIMES':([2,3,4,5,6,22,23,24,25,26,27,33,34,36,37,39,],[-3,15,-8,-9,-10,-3,15,15,15,15,15,-11,-12,-14,-15,-13,]),'DIVIDE':([2,3,4,5,6,22,23,24,25,26,27,33,34,36,37,39,],[-3,16,-8,-9,-10,-3,16,16,16,16,16,-11,-12,-14,-15,-13,]),'FINVOCATION':([7,8,9,10,11,],[17,18,19,20,21,]),'FINISHER':([28,29,31,32,38,],[33,34,36,37,39,]),'COMMA':([30,],[35,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,],[1,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,12,13,14,15,16,],[3,23,24,25,26,27,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,15 +26,20 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> expression","S'",1,None,None,None),
-  ('expression -> INFOID FINVOCATION STRING FINISHER','expression',4,'p_expression_infoID','parser.py',6),
-  ('expression -> MODEL FINVOCATION STRING FINISHER','expression',4,'p_expression_model','parser.py',11),
-  ('expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER','expression',6,'p_expression_getFile','parser.py',16),
-  ('expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER','expression',4,'p_expression_getPolypeptides','parser.py',21),
-  ('expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER','expression',4,'p_expression_getAminoAcidsInfo','parser.py',26),
-  ('expression -> NUMBER PLUS NUMBER','expression',3,'p_expression_plus','parser.py',31),
-  ('expression -> NUMBER MINUS NUMBER','expression',3,'p_expression_minus','parser.py',35),
-  ('expression -> NUMBER TIMES NUMBER','expression',3,'p_expression_times','parser.py',39),
-  ('expression -> NUMBER DIVIDE NUMBER','expression',3,'p_expression_divide','parser.py',43),
-  ('expression -> ID','expression',1,'p_expression_id','parser.py',47),
+  ("S' -> statement","S'",1,None,None,None),
+  ('statement -> IDENTIFIER EQUALS expression','statement',3,'p_statement_identifier','parser.py',9),
+  ('statement -> expression','statement',1,'p_statement_expr','parser.py',13),
+  ('expression -> IDENTIFIER','expression',1,'p_expression_identifier','parser.py',17),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_plus','parser.py',24),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_minus','parser.py',28),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_times','parser.py',32),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_divide','parser.py',36),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',40),
+  ('expression -> STRING','expression',1,'p_expression_string','parser.py',44),
+  ('expression -> DICTIONARY','expression',1,'p_expression_dictionary','parser.py',48),
+  ('expression -> INFOID FINVOCATION STRING FINISHER','expression',4,'p_expression_infoID','parser.py',52),
+  ('expression -> MODEL FINVOCATION STRING FINISHER','expression',4,'p_expression_model','parser.py',57),
+  ('expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER','expression',6,'p_expression_getFile','parser.py',62),
+  ('expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER','expression',4,'p_expression_getPolypeptides','parser.py',67),
+  ('expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER','expression',4,'p_expression_getAminoAcidsInfo','parser.py',72),
 ]

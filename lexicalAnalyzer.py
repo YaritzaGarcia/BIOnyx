@@ -13,7 +13,9 @@ tokens = [
     'MINUS',
     'TIMES',
     'DIVIDE',
-    'ID'
+    'IDENTIFIER',
+    'EQUALS',
+    'DICTIONARY'
 ]
 
 # BIOnyx Reserved Words
@@ -35,9 +37,9 @@ t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
+t_EQUALS = r'\='
 
-
-def t_ID(t):
+def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     if t.value in reserved:
         t.type = reserved[t.value]
@@ -51,7 +53,12 @@ def t_NUMBER(t):
 
 def t_STRING(t):
     r'(\"([^"]*)\")'
-    t.value = t.value[1:-1]
+    t.value = str(t.value[1:-1])
+
+    return t
+
+def t_DICTIONARY(t):
+    r'(\{(_*)\})'
 
     return t
 
@@ -59,7 +66,6 @@ def t_STRING(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -69,10 +75,8 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-
 # Build the lexer
 lexer = lex.lex()
-
 
 def codeFile(file):
     # read the code in the file
