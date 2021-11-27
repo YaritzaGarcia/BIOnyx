@@ -1,53 +1,129 @@
+from typing import Sequence
 from Bio.PDB import *
-from Bio.PDB import MMCIF2Dict
+from Bio.PDB.MMCIF2Dict import *
+from Bio.SeqUtils.ProtParam import ProteinAnalysis
 import nglview as nv
-import ipywidgets
+from texttable import Texttable
+import sys
+import os
+
+# Disable
 
 
-# # https://www.tutorialspoint.com/biopython/biopython_pdb_module.htm
+def blockPrint():
+    sys.stdout = open(os.devnull, 'w')
 
-# pdbl = PDBList()
+# Restore
 
-# # Getting pdb file
-# pdbl.retrieve_pdb_file('2FAT', pdir = '.', file_format = 'pdb')
-# pdb_parser = PDBParser(QUIET = True)
-# # Modeling pdb file
-# data = pdb_parser.get_structure("2FAT", "2FAT.pdb")
-# view = nv.show_biopython(data)
-# view
 
-# # Getting mmCif file
-# pdbl.retrieve_pdb_file('2FAT', pdir='.', file_format='mmCif')
-# # Modeling cif file
-# parser = MMCIFParser(QUIET=True)
-# data = parser.get_structure("2FAT", "2FAT.cif")
-# view = nv.show_biopython(data)
-# view
+def enablePrint():
+    sys.stdout = sys.__stdout__
+
+
+# Print bold
+start = "\033[1m"
+end = "\033[0;0m"
+
+# https://www.tutorialspoint.com/biopython/biopython_pdb_module.htm
+
+# Methods that are working
+
+
+def getFile(ID, path):
+    # Searching for the pdb file
+    pdbServer = PDBList()
+    pdbServer.retrieve_pdb_file(ID, pdir=path, file_format='mmCif')
+    return("The file has been saved in " + path)
+
+
+def getPolypeptides(ID):
+
+    # Creating rows for the Polypeptide table
+    polypeptidesRows = [
+        ["Polypeptide Number", "Polypeptide Sequence", "Sequence Length"]]
+
+    # Searching for the pdb file
+    blockPrint()
+    getFile(ID, '.')
+    enablePrint()
+
+    # Getting the protein structure
+    mmcif_Parser = MMCIFParser(QUIET=True)
+    fileName = ID + ".cif"
+    idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
+
+    # Getting Polypeptide information
+    builder = PPBuilder()
+    polypeptideNum = 1
+    for polypeptide in builder.build_peptides(idStructure):
+        seq = polypeptide.get_sequence()
+        polypeptidesRows.append([polypeptideNum, seq, len(seq)])
+        polypeptideNum += 1
+
+    # Creating and printing the table
+    polypeptidesTable = Texttable()
+    polypeptidesTable.add_rows(polypeptidesRows)
+    polypeptidesTable.set_cols_align(['c', 'c', 'c'])
+    print("This table contains all the polypeptides of the protein " + start + ID + end)
+    print(polypeptidesTable.draw())
+
+
+def getAminoAcidsInfo(ID):
+    tableRows = [["Polypeptide Number",
+                  "Amino Acid Information in the Polypeptide"]]
+
+    # Searching for the pdb file
+    blockPrint()
+    getFile(ID, '.')
+    enablePrint()
+
+    # Getting the protein structure
+    mmcif_Parser = MMCIFParser(QUIET=True)
+    fileName = ID + ".cif"
+    idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
+
+    # Getting Polypeptide information
+    builder = PPBuilder()
+    polypeptideNum = 1
+    for polypeptide in builder.build_peptides(idStructure):
+        pSequence = polypeptide.get_sequence()
+        pAnalysis = ProteinAnalysis(str(pSequence))
+
+        aminoRows = [['Amino Acid', 'Amount', 'Percentage']]
+        aminoCount = pAnalysis.count_amino_acids()
+        aminoPercent = pAnalysis.get_amino_acids_percent()
+        for key in aminoCount:
+            aminoRows.append([key, aminoCount[key], str(
+                aminoPercent[key] * 100)[0:4] + " %"])
+
+        aminoAcidsTable = Texttable()
+        aminoAcidsTable.add_rows(aminoRows)
+        aminoAcidsTable.set_cols_align(['c', 'c', 'c'])
+        tableRows.append([polypeptideNum, aminoAcidsTable.draw()])
+        polypeptideNum += 1
+
+    table = Texttable()
+    table.add_rows(tableRows)
+    table.set_cols_align(['c', 'c'])
+    print(table.draw())
+
+# Methods in process
 
 
 def infoID(ID):
     idPdb = PDBList()
     idPdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
-    mmcif_Parser = MMCIFParser(QUIET=True)
     fileName = ID + ".cif"
-# The fastest way to access protein structure information
-# is through the header, a metadata dictionary,
-# available in both PDB and CIF format.
-    # structure = mmcif_Parser.get_structure(ID, fileName.lower())
-    # _pdbx_entry_details.nonpolymer_details
-    # _pdbx_struct_mod_residue.details
-    # _pdbx_struct_mod_residue.details (funcion structural details )
-    # _struct_biol.details (biological structural details )
-    # _struct.title (name of the protein based on id function )
-    # mmcif_dict = MMCIF2Dict.MMCIF2Dict(fileName.lower())
-    # for k, v in mmcif_dict.items():
-    #     print(k,v)
+    # mmcif_dict = MMCIF2Dict(fileName)
+    mmcif_Parser = MMCIFParser(QUIET=True)
     idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
-    return Selection.unfold_entities(idStructure, "R")  # R is for residues
-    # return len(mmcif_dict)  # 689
+    # for idModel in idStructure:
+    #     for residue in idModel.get_residues():
+    #         print(residue)
+    residues = idStructure.get_residues()  # returns a generator object
+    [print(item) for item in residues]
 
-
-print(infoID("1fat"))
+# infoID("1atp")
 
 
 def model(ID):
@@ -60,16 +136,12 @@ def model(ID):
     fileName = ID + ".cif"
     idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
 
-    # Modeling the protein structure
-    idModel = nv.show_biopython(idStructure)
-    return(idModel)
+    for model in idStructure:
+        for chain in model:
+            print('%s - Chain: %s. Number of residues: %d. Number of atoms: %d.')
 
+    # # Modeling the protein structure
+    # idModel = nv.show_biopython(idStructure)
+    # return(idModel)
 
 # model("2FAT")
-
-
-def getFile(ID, path):
-    # Searching for the pdb file
-    pdbServer = PDBList()
-    pdbServer.retrieve_pdb_file(ID, pdir=path, file_format='mmCif')
-    print("The file has been saved in " + path)

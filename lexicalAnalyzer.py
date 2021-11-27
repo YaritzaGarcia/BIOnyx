@@ -1,5 +1,4 @@
 import ply.lex as lex
-import re
 
 # BIOnyx Tokens
 # This is a list with all the token names of BIOnyx
@@ -8,8 +7,6 @@ tokens = [
     'STRING',
     'FINISHER',
     'FINVOCATION',
-    'LBRACKET',
-    'RBRACKET',
     'COMMA',
     'NUMBER',
     'PLUS',
@@ -23,7 +20,9 @@ tokens = [
 reserved = {
     'infoID': 'INFOID',
     'model': 'MODEL',
-    'getFile': 'GETFILE'
+    'getFile': 'GETFILE',
+    'getPolypeptides': 'GETPOLYPEPTIDES',
+    'getAminoAcidsInfo' : 'GETAMINOACIDSINFO'
 }
 
 tokens = tokens + list(reserved.values())
@@ -31,8 +30,6 @@ tokens = tokens + list(reserved.values())
 # BIOnyx Regular expressions
 t_FINISHER = r'\;'
 t_FINVOCATION = r'\->'
-t_LBRACKET = r'\['
-t_RBRACKET = r'\]'
 t_COMMA = r'\,'
 t_PLUS = r'\+'
 t_MINUS = r'-'
@@ -47,15 +44,10 @@ def t_ID(t):
     return t
 
 # Rule for turn string into numbers
-
-
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
-
-# LexToken(STRING,'1atp", "C:\\Users\\User\\Desktop',1,11)
-
 
 def t_STRING(t):
     r'(\"([^"]*)\")'
@@ -64,8 +56,6 @@ def t_STRING(t):
     return t
 
 # Define a rule to track line numbers
-
-
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
@@ -90,7 +80,6 @@ def codeFile(file):
     lines = file.read()
     file.close()
     return(lines)
-
 
 lexer.input(codeFile("BIOnyxCode.bx"))
 
