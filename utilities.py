@@ -69,6 +69,7 @@ def getPolypeptides(ID):
 
 
 def getAminoAcidsInfo(ID):
+    resultDict = {}
     tableRows = [["Polypeptide Number",
                   "Amino Acid Information in the Polypeptide"]]
 
@@ -86,15 +87,19 @@ def getAminoAcidsInfo(ID):
     builder = PPBuilder()
     polypeptideNum = 1
     for polypeptide in builder.build_peptides(idStructure):
+        resultDict[polypeptideNum] = {}
         pSequence = polypeptide.get_sequence()
         pAnalysis = ProteinAnalysis(str(pSequence))
-
         aminoRows = [['Amino Acid', 'Amount', 'Percentage']]
         aminoCount = pAnalysis.count_amino_acids()
         aminoPercent = pAnalysis.get_amino_acids_percent()
         for key in aminoCount:
             aminoRows.append([key, aminoCount[key], str(
                 aminoPercent[key] * 100)[0:4] + " %"])
+            resultDict[polypeptideNum][key] = {}
+            resultDict[polypeptideNum][key]["Amount"] = aminoCount[key]
+            resultDict[polypeptideNum][key]["Percentage"] = str(
+                aminoPercent[key] * 100)[0:4]
 
         aminoAcidsTable = Texttable()
         aminoAcidsTable.add_rows(aminoRows)
@@ -106,8 +111,62 @@ def getAminoAcidsInfo(ID):
     table.add_rows(tableRows)
     table.set_cols_align(['c', 'c'])
     print(table.draw())
+    return resultDict
 
 # Methods in process
+
+
+def getResidues(ID):
+    pdb = PDBList()
+    pdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
+    fileName = ID + ".cif"
+    mmcif_Parser = MMCIFParser(QUIET=True)
+    structure = mmcif_Parser.get_structure(ID, fileName.lower())
+    for model in structure:
+        for residue in model.get_residues():
+            print(residue)
+# MW = molecular weight
+# This functions returns an array of tuples that contains the sequence and its molecular weight
+# for the given protein
+
+
+# def calcAminoAcids(ID):
+#     return MolecularWeight(ID, "Calcalc_amino_acids")
+
+
+def MolecularWeight(ID, method):
+    # Acces the Data bank and gather the protein structure
+    # Searching for the pdb file
+
+    blockPrint()
+    getFile(ID, '.')
+    enablePrint()
+    mwRows = [["Sequence Number", "Sequence", "Molecular Weight"]]
+
+    mmcif_Parser = MMCIFParser(QUIET=True)
+    fileName = ID + ".cif"
+    structure = mmcif_Parser.get_structure(ID, fileName.lower())
+
+    polypeptide_builder = CaPPBuilder()
+    count = 1
+
+    for polypeptide in polypeptide_builder.build_peptides(structure):
+        seq = polypeptide.get_sequence()
+        analyzed_seq = ProteinAnalysis(str(seq))
+        mwRows.append([count, seq, analyzed_seq.molecular_weight()])
+        # print(analyzed_seq.count_amino_acids())
+        count += 1
+    # Creating a table
+    mwTable = Texttable()
+    mwTable.add_rows(mwRows)
+    mwTable.set_cols_align(['c', 'c', 'c'])
+    print(mwTable.draw())
+
+
+# MolecularWeight("1atp", "calc_amino_acids")
+
+
+# getResidues("1atp")
 
 
 def infoID(ID):
