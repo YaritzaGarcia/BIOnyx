@@ -1,0 +1,10 @@
+1atp.cif
+2fat.cif
+6voy.cif
+tempCodeRunnerFile.py
+7kmb.cif
+.gitignore
+__pycache__/lexicalAnalyzer.cpython-39.pyc
+__pycache__/parsetab.cpython-39.pyc
+__pycache__/utilities.cpython-39.pyc
+utilities.py
