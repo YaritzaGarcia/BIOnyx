@@ -21,3 +21,16 @@ Some of the potential advantages of our programming language would be:
 * PDB Access 
 * Molecular Modeling
 * Structural Biology analysis
+
+## **Features Currently Working**
+
+  * Simple mathematical opertations such as addition, substraction, multiplication and division. 
+  * Values can be stored in variables. (Example of values: Strings, Dictionaries, Mathematical Operations)
+  * Functions:
+    * getFile - Given the identifier of a protein and a path, this function will find the protein in a pdb file already loaded into our programm and store it in the    given path. This function makes it easier to locate the proteins information.
+    * getPolypeptides - Given a the identifier of a protein, this function returns a table with all of the given proteins polypeptides.
+    * getAminoAcidsInfo - Given the identifier of a protein, this funtion returns a table of the amino acids each polypeptide contains of the given protein.
+    * MolecularWeight - Calculates the molecular weight of the given protein.
+  
+## **Installation Instructions**
+
