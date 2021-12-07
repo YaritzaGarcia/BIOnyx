@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from lexicalAnalyzer import tokens
-from utilities import getPolypeptides, model, infoID, getFile, getAminoAcidsInfo, MolecularWeight
+from utilities import getPolypeptides, getFile, getAminoAcidsInfo, MolecularWeight
 
 # dictionary of identifiers
 identifiers = {}
@@ -57,18 +57,6 @@ def p_expression_string(p):
 def p_expression_dictionary(p):
     'expression : DICTIONARY'
     p[0] = p[1]
-
-
-def p_expression_infoID(p):
-    # infoID -> "1atp", ["identifier", "sequence", "aminoAcids"];"
-    'expression : INFOID FINVOCATION STRING FINISHER'
-    print(infoID(p[3]))
-
-
-def p_expression_model(p):
-    # model -> "1atp";
-    'expression : MODEL FINVOCATION STRING FINISHER'
-    return(model(p[4]))
 
 
 def p_expression_getFile(p):

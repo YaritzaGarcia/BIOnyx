@@ -20,13 +20,10 @@ tokens = [
 
 # BIOnyx Reserved Words
 reserved = {
-    'infoID': 'INFOID',
-    'model': 'MODEL',
     'getFile': 'GETFILE',
     'getPolypeptides': 'GETPOLYPEPTIDES',
     'getAminoAcidsInfo': 'GETAMINOACIDSINFO',
     'MolecularWeight': 'MOLECULARWEIGHT'
-
 }
 
 tokens = tokens + list(reserved.values())
