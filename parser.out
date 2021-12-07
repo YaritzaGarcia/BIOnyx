@@ -13,34 +13,28 @@ Rule 7     expression -> expression DIVIDE expression
 Rule 8     expression -> NUMBER
 Rule 9     expression -> STRING
 Rule 10    expression -> DICTIONARY
-Rule 11    expression -> INFOID FINVOCATION STRING FINISHER
-Rule 12    expression -> MODEL FINVOCATION STRING FINISHER
-Rule 13    expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER
-Rule 14    expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-Rule 15    expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-Rule 16    expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER
-Rule 17    expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER
+Rule 11    expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER
+Rule 12    expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+Rule 13    expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+Rule 14    expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
 Terminals, with rules where they appear
 
-CALCAMINOACIDS       : 17
-COMMA                : 13
+COMMA                : 11
 DICTIONARY           : 10
 DIVIDE               : 7
 EQUALS               : 1
-FINISHER             : 11 12 13 14 15 16 17
-FINVOCATION          : 11 12 13 14 15 16 17
-GETAMINOACIDSINFO    : 15
-GETFILE              : 13
-GETPOLYPEPTIDES      : 14
+FINISHER             : 11 12 13 14
+FINVOCATION          : 11 12 13 14
+GETAMINOACIDSINFO    : 13
+GETFILE              : 11
+GETPOLYPEPTIDES      : 12
 IDENTIFIER           : 1 3
-INFOID               : 11
 MINUS                : 5
-MODEL                : 12
-MOLECULARWEIGHT      : 16
+MOLECULARWEIGHT      : 14
 NUMBER               : 8
 PLUS                 : 4
-STRING               : 9 11 12 13 13 14 15 16 17
+STRING               : 9 11 11 12 13 14
 TIMES                : 6
 error                : 
 
@@ -64,25 +58,19 @@ state 0
     (8) expression -> . NUMBER
     (9) expression -> . STRING
     (10) expression -> . DICTIONARY
-    (11) expression -> . INFOID FINVOCATION STRING FINISHER
-    (12) expression -> . MODEL FINVOCATION STRING FINISHER
-    (13) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
-    (14) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (15) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-    (16) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
-    (17) expression -> . CALCAMINOACIDS FINVOCATION STRING FINISHER
+    (11) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (12) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+    (13) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (14) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
     IDENTIFIER      shift and go to state 2
     NUMBER          shift and go to state 4
     STRING          shift and go to state 5
     DICTIONARY      shift and go to state 6
-    INFOID          shift and go to state 7
-    MODEL           shift and go to state 8
-    GETFILE         shift and go to state 9
-    GETPOLYPEPTIDES shift and go to state 10
-    GETAMINOACIDSINFO shift and go to state 11
-    MOLECULARWEIGHT shift and go to state 12
-    CALCAMINOACIDS  shift and go to state 13
+    GETFILE         shift and go to state 7
+    GETPOLYPEPTIDES shift and go to state 8
+    GETAMINOACIDSINFO shift and go to state 9
+    MOLECULARWEIGHT shift and go to state 10
 
     statement                      shift and go to state 1
     expression                     shift and go to state 3
@@ -98,7 +86,7 @@ state 2
     (1) statement -> IDENTIFIER . EQUALS expression
     (3) expression -> IDENTIFIER .
 
-    EQUALS          shift and go to state 14
+    EQUALS          shift and go to state 11
     PLUS            reduce using rule 3 (expression -> IDENTIFIER .)
     MINUS           reduce using rule 3 (expression -> IDENTIFIER .)
     TIMES           reduce using rule 3 (expression -> IDENTIFIER .)
@@ -115,10 +103,10 @@ state 3
     (7) expression -> expression . DIVIDE expression
 
     $end            reduce using rule 2 (statement -> expression .)
-    PLUS            shift and go to state 15
-    MINUS           shift and go to state 16
-    TIMES           shift and go to state 17
-    DIVIDE          shift and go to state 18
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    TIMES           shift and go to state 14
+    DIVIDE          shift and go to state 15
 
 
 state 4
@@ -156,54 +144,33 @@ state 6
 
 state 7
 
-    (11) expression -> INFOID . FINVOCATION STRING FINISHER
+    (11) expression -> GETFILE . FINVOCATION STRING COMMA STRING FINISHER
 
-    FINVOCATION     shift and go to state 19
+    FINVOCATION     shift and go to state 16
 
 
 state 8
 
-    (12) expression -> MODEL . FINVOCATION STRING FINISHER
+    (12) expression -> GETPOLYPEPTIDES . FINVOCATION STRING FINISHER
 
-    FINVOCATION     shift and go to state 20
+    FINVOCATION     shift and go to state 17
 
 
 state 9
 
-    (13) expression -> GETFILE . FINVOCATION STRING COMMA STRING FINISHER
+    (13) expression -> GETAMINOACIDSINFO . FINVOCATION STRING FINISHER
 
-    FINVOCATION     shift and go to state 21
+    FINVOCATION     shift and go to state 18
 
 
 state 10
 
-    (14) expression -> GETPOLYPEPTIDES . FINVOCATION STRING FINISHER
+    (14) expression -> MOLECULARWEIGHT . FINVOCATION STRING FINISHER
 
-    FINVOCATION     shift and go to state 22
+    FINVOCATION     shift and go to state 19
 
 
 state 11
-
-    (15) expression -> GETAMINOACIDSINFO . FINVOCATION STRING FINISHER
-
-    FINVOCATION     shift and go to state 23
-
-
-state 12
-
-    (16) expression -> MOLECULARWEIGHT . FINVOCATION STRING FINISHER
-
-    FINVOCATION     shift and go to state 24
-
-
-state 13
-
-    (17) expression -> CALCAMINOACIDS . FINVOCATION STRING FINISHER
-
-    FINVOCATION     shift and go to state 25
-
-
-state 14
 
     (1) statement -> IDENTIFIER EQUALS . expression
     (3) expression -> . IDENTIFIER
@@ -214,29 +181,23 @@ state 14
     (8) expression -> . NUMBER
     (9) expression -> . STRING
     (10) expression -> . DICTIONARY
-    (11) expression -> . INFOID FINVOCATION STRING FINISHER
-    (12) expression -> . MODEL FINVOCATION STRING FINISHER
-    (13) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
-    (14) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (15) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-    (16) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
-    (17) expression -> . CALCAMINOACIDS FINVOCATION STRING FINISHER
+    (11) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (12) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+    (13) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (14) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
-    IDENTIFIER      shift and go to state 26
+    IDENTIFIER      shift and go to state 20
     NUMBER          shift and go to state 4
     STRING          shift and go to state 5
     DICTIONARY      shift and go to state 6
-    INFOID          shift and go to state 7
-    MODEL           shift and go to state 8
-    GETFILE         shift and go to state 9
-    GETPOLYPEPTIDES shift and go to state 10
-    GETAMINOACIDSINFO shift and go to state 11
-    MOLECULARWEIGHT shift and go to state 12
-    CALCAMINOACIDS  shift and go to state 13
+    GETFILE         shift and go to state 7
+    GETPOLYPEPTIDES shift and go to state 8
+    GETAMINOACIDSINFO shift and go to state 9
+    MOLECULARWEIGHT shift and go to state 10
 
-    expression                     shift and go to state 27
+    expression                     shift and go to state 21
 
-state 15
+state 12
 
     (4) expression -> expression PLUS . expression
     (3) expression -> . IDENTIFIER
@@ -247,29 +208,23 @@ state 15
     (8) expression -> . NUMBER
     (9) expression -> . STRING
     (10) expression -> . DICTIONARY
-    (11) expression -> . INFOID FINVOCATION STRING FINISHER
-    (12) expression -> . MODEL FINVOCATION STRING FINISHER
-    (13) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
-    (14) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (15) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-    (16) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
-    (17) expression -> . CALCAMINOACIDS FINVOCATION STRING FINISHER
+    (11) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (12) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+    (13) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (14) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
-    IDENTIFIER      shift and go to state 26
+    IDENTIFIER      shift and go to state 20
     NUMBER          shift and go to state 4
     STRING          shift and go to state 5
     DICTIONARY      shift and go to state 6
-    INFOID          shift and go to state 7
-    MODEL           shift and go to state 8
-    GETFILE         shift and go to state 9
-    GETPOLYPEPTIDES shift and go to state 10
-    GETAMINOACIDSINFO shift and go to state 11
-    MOLECULARWEIGHT shift and go to state 12
-    CALCAMINOACIDS  shift and go to state 13
+    GETFILE         shift and go to state 7
+    GETPOLYPEPTIDES shift and go to state 8
+    GETAMINOACIDSINFO shift and go to state 9
+    MOLECULARWEIGHT shift and go to state 10
 
-    expression                     shift and go to state 28
+    expression                     shift and go to state 22
 
-state 16
+state 13
 
     (5) expression -> expression MINUS . expression
     (3) expression -> . IDENTIFIER
@@ -280,29 +235,23 @@ state 16
     (8) expression -> . NUMBER
     (9) expression -> . STRING
     (10) expression -> . DICTIONARY
-    (11) expression -> . INFOID FINVOCATION STRING FINISHER
-    (12) expression -> . MODEL FINVOCATION STRING FINISHER
-    (13) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
-    (14) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (15) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-    (16) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
-    (17) expression -> . CALCAMINOACIDS FINVOCATION STRING FINISHER
+    (11) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (12) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+    (13) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (14) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
-    IDENTIFIER      shift and go to state 26
+    IDENTIFIER      shift and go to state 20
     NUMBER          shift and go to state 4
     STRING          shift and go to state 5
     DICTIONARY      shift and go to state 6
-    INFOID          shift and go to state 7
-    MODEL           shift and go to state 8
-    GETFILE         shift and go to state 9
-    GETPOLYPEPTIDES shift and go to state 10
-    GETAMINOACIDSINFO shift and go to state 11
-    MOLECULARWEIGHT shift and go to state 12
-    CALCAMINOACIDS  shift and go to state 13
+    GETFILE         shift and go to state 7
+    GETPOLYPEPTIDES shift and go to state 8
+    GETAMINOACIDSINFO shift and go to state 9
+    MOLECULARWEIGHT shift and go to state 10
 
-    expression                     shift and go to state 29
+    expression                     shift and go to state 23
 
-state 17
+state 14
 
     (6) expression -> expression TIMES . expression
     (3) expression -> . IDENTIFIER
@@ -313,29 +262,23 @@ state 17
     (8) expression -> . NUMBER
     (9) expression -> . STRING
     (10) expression -> . DICTIONARY
-    (11) expression -> . INFOID FINVOCATION STRING FINISHER
-    (12) expression -> . MODEL FINVOCATION STRING FINISHER
-    (13) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
-    (14) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (15) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-    (16) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
-    (17) expression -> . CALCAMINOACIDS FINVOCATION STRING FINISHER
+    (11) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (12) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+    (13) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (14) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
-    IDENTIFIER      shift and go to state 26
+    IDENTIFIER      shift and go to state 20
     NUMBER          shift and go to state 4
     STRING          shift and go to state 5
     DICTIONARY      shift and go to state 6
-    INFOID          shift and go to state 7
-    MODEL           shift and go to state 8
-    GETFILE         shift and go to state 9
-    GETPOLYPEPTIDES shift and go to state 10
-    GETAMINOACIDSINFO shift and go to state 11
-    MOLECULARWEIGHT shift and go to state 12
-    CALCAMINOACIDS  shift and go to state 13
+    GETFILE         shift and go to state 7
+    GETPOLYPEPTIDES shift and go to state 8
+    GETAMINOACIDSINFO shift and go to state 9
+    MOLECULARWEIGHT shift and go to state 10
 
-    expression                     shift and go to state 30
+    expression                     shift and go to state 24
 
-state 18
+state 15
 
     (7) expression -> expression DIVIDE . expression
     (3) expression -> . IDENTIFIER
@@ -346,78 +289,51 @@ state 18
     (8) expression -> . NUMBER
     (9) expression -> . STRING
     (10) expression -> . DICTIONARY
-    (11) expression -> . INFOID FINVOCATION STRING FINISHER
-    (12) expression -> . MODEL FINVOCATION STRING FINISHER
-    (13) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
-    (14) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
-    (15) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
-    (16) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
-    (17) expression -> . CALCAMINOACIDS FINVOCATION STRING FINISHER
+    (11) expression -> . GETFILE FINVOCATION STRING COMMA STRING FINISHER
+    (12) expression -> . GETPOLYPEPTIDES FINVOCATION STRING FINISHER
+    (13) expression -> . GETAMINOACIDSINFO FINVOCATION STRING FINISHER
+    (14) expression -> . MOLECULARWEIGHT FINVOCATION STRING FINISHER
 
-    IDENTIFIER      shift and go to state 26
+    IDENTIFIER      shift and go to state 20
     NUMBER          shift and go to state 4
     STRING          shift and go to state 5
     DICTIONARY      shift and go to state 6
-    INFOID          shift and go to state 7
-    MODEL           shift and go to state 8
-    GETFILE         shift and go to state 9
-    GETPOLYPEPTIDES shift and go to state 10
-    GETAMINOACIDSINFO shift and go to state 11
-    MOLECULARWEIGHT shift and go to state 12
-    CALCAMINOACIDS  shift and go to state 13
+    GETFILE         shift and go to state 7
+    GETPOLYPEPTIDES shift and go to state 8
+    GETAMINOACIDSINFO shift and go to state 9
+    MOLECULARWEIGHT shift and go to state 10
 
-    expression                     shift and go to state 31
+    expression                     shift and go to state 25
+
+state 16
+
+    (11) expression -> GETFILE FINVOCATION . STRING COMMA STRING FINISHER
+
+    STRING          shift and go to state 26
+
+
+state 17
+
+    (12) expression -> GETPOLYPEPTIDES FINVOCATION . STRING FINISHER
+
+    STRING          shift and go to state 27
+
+
+state 18
+
+    (13) expression -> GETAMINOACIDSINFO FINVOCATION . STRING FINISHER
+
+    STRING          shift and go to state 28
+
 
 state 19
 
-    (11) expression -> INFOID FINVOCATION . STRING FINISHER
+    (14) expression -> MOLECULARWEIGHT FINVOCATION . STRING FINISHER
 
-    STRING          shift and go to state 32
+    STRING          shift and go to state 29
 
 
 state 20
-
-    (12) expression -> MODEL FINVOCATION . STRING FINISHER
-
-    STRING          shift and go to state 33
-
-
-state 21
-
-    (13) expression -> GETFILE FINVOCATION . STRING COMMA STRING FINISHER
-
-    STRING          shift and go to state 34
-
-
-state 22
-
-    (14) expression -> GETPOLYPEPTIDES FINVOCATION . STRING FINISHER
-
-    STRING          shift and go to state 35
-
-
-state 23
-
-    (15) expression -> GETAMINOACIDSINFO FINVOCATION . STRING FINISHER
-
-    STRING          shift and go to state 36
-
-
-state 24
-
-    (16) expression -> MOLECULARWEIGHT FINVOCATION . STRING FINISHER
-
-    STRING          shift and go to state 37
-
-
-state 25
-
-    (17) expression -> CALCAMINOACIDS FINVOCATION . STRING FINISHER
-
-    STRING          shift and go to state 38
-
-
-state 26
 
     (3) expression -> IDENTIFIER .
 
@@ -428,7 +344,7 @@ state 26
     $end            reduce using rule 3 (expression -> IDENTIFIER .)
 
 
-state 27
+state 21
 
     (1) statement -> IDENTIFIER EQUALS expression .
     (4) expression -> expression . PLUS expression
@@ -437,13 +353,13 @@ state 27
     (7) expression -> expression . DIVIDE expression
 
     $end            reduce using rule 1 (statement -> IDENTIFIER EQUALS expression .)
-    PLUS            shift and go to state 15
-    MINUS           shift and go to state 16
-    TIMES           shift and go to state 17
-    DIVIDE          shift and go to state 18
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    TIMES           shift and go to state 14
+    DIVIDE          shift and go to state 15
 
 
-state 28
+state 22
 
     (4) expression -> expression PLUS expression .
     (4) expression -> expression . PLUS expression
@@ -456,10 +372,10 @@ state 28
   ! shift/reduce conflict for TIMES resolved as shift
   ! shift/reduce conflict for DIVIDE resolved as shift
     $end            reduce using rule 4 (expression -> expression PLUS expression .)
-    PLUS            shift and go to state 15
-    MINUS           shift and go to state 16
-    TIMES           shift and go to state 17
-    DIVIDE          shift and go to state 18
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    TIMES           shift and go to state 14
+    DIVIDE          shift and go to state 15
 
   ! PLUS            [ reduce using rule 4 (expression -> expression PLUS expression .) ]
   ! MINUS           [ reduce using rule 4 (expression -> expression PLUS expression .) ]
@@ -467,7 +383,7 @@ state 28
   ! DIVIDE          [ reduce using rule 4 (expression -> expression PLUS expression .) ]
 
 
-state 29
+state 23
 
     (5) expression -> expression MINUS expression .
     (4) expression -> expression . PLUS expression
@@ -480,10 +396,10 @@ state 29
   ! shift/reduce conflict for TIMES resolved as shift
   ! shift/reduce conflict for DIVIDE resolved as shift
     $end            reduce using rule 5 (expression -> expression MINUS expression .)
-    PLUS            shift and go to state 15
-    MINUS           shift and go to state 16
-    TIMES           shift and go to state 17
-    DIVIDE          shift and go to state 18
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    TIMES           shift and go to state 14
+    DIVIDE          shift and go to state 15
 
   ! PLUS            [ reduce using rule 5 (expression -> expression MINUS expression .) ]
   ! MINUS           [ reduce using rule 5 (expression -> expression MINUS expression .) ]
@@ -491,7 +407,7 @@ state 29
   ! DIVIDE          [ reduce using rule 5 (expression -> expression MINUS expression .) ]
 
 
-state 30
+state 24
 
     (6) expression -> expression TIMES expression .
     (4) expression -> expression . PLUS expression
@@ -504,10 +420,10 @@ state 30
   ! shift/reduce conflict for TIMES resolved as shift
   ! shift/reduce conflict for DIVIDE resolved as shift
     $end            reduce using rule 6 (expression -> expression TIMES expression .)
-    PLUS            shift and go to state 15
-    MINUS           shift and go to state 16
-    TIMES           shift and go to state 17
-    DIVIDE          shift and go to state 18
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    TIMES           shift and go to state 14
+    DIVIDE          shift and go to state 15
 
   ! PLUS            [ reduce using rule 6 (expression -> expression TIMES expression .) ]
   ! MINUS           [ reduce using rule 6 (expression -> expression TIMES expression .) ]
@@ -515,7 +431,7 @@ state 30
   ! DIVIDE          [ reduce using rule 6 (expression -> expression TIMES expression .) ]
 
 
-state 31
+state 25
 
     (7) expression -> expression DIVIDE expression .
     (4) expression -> expression . PLUS expression
@@ -528,10 +444,10 @@ state 31
   ! shift/reduce conflict for TIMES resolved as shift
   ! shift/reduce conflict for DIVIDE resolved as shift
     $end            reduce using rule 7 (expression -> expression DIVIDE expression .)
-    PLUS            shift and go to state 15
-    MINUS           shift and go to state 16
-    TIMES           shift and go to state 17
-    DIVIDE          shift and go to state 18
+    PLUS            shift and go to state 12
+    MINUS           shift and go to state 13
+    TIMES           shift and go to state 14
+    DIVIDE          shift and go to state 15
 
   ! PLUS            [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
   ! MINUS           [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
@@ -539,161 +455,107 @@ state 31
   ! DIVIDE          [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
 
 
+state 26
+
+    (11) expression -> GETFILE FINVOCATION STRING . COMMA STRING FINISHER
+
+    COMMA           shift and go to state 30
+
+
+state 27
+
+    (12) expression -> GETPOLYPEPTIDES FINVOCATION STRING . FINISHER
+
+    FINISHER        shift and go to state 31
+
+
+state 28
+
+    (13) expression -> GETAMINOACIDSINFO FINVOCATION STRING . FINISHER
+
+    FINISHER        shift and go to state 32
+
+
+state 29
+
+    (14) expression -> MOLECULARWEIGHT FINVOCATION STRING . FINISHER
+
+    FINISHER        shift and go to state 33
+
+
+state 30
+
+    (11) expression -> GETFILE FINVOCATION STRING COMMA . STRING FINISHER
+
+    STRING          shift and go to state 34
+
+
+state 31
+
+    (12) expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .
+
+    PLUS            reduce using rule 12 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
+    MINUS           reduce using rule 12 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
+    TIMES           reduce using rule 12 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
+    DIVIDE          reduce using rule 12 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
+    $end            reduce using rule 12 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
+
+
 state 32
 
-    (11) expression -> INFOID FINVOCATION STRING . FINISHER
+    (13) expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .
 
-    FINISHER        shift and go to state 39
+    PLUS            reduce using rule 13 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
+    MINUS           reduce using rule 13 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
+    TIMES           reduce using rule 13 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
+    DIVIDE          reduce using rule 13 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
+    $end            reduce using rule 13 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
 
 
 state 33
 
-    (12) expression -> MODEL FINVOCATION STRING . FINISHER
+    (14) expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .
 
-    FINISHER        shift and go to state 40
+    PLUS            reduce using rule 14 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
+    MINUS           reduce using rule 14 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
+    TIMES           reduce using rule 14 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
+    DIVIDE          reduce using rule 14 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
+    $end            reduce using rule 14 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
 
 
 state 34
 
-    (13) expression -> GETFILE FINVOCATION STRING . COMMA STRING FINISHER
+    (11) expression -> GETFILE FINVOCATION STRING COMMA STRING . FINISHER
 
-    COMMA           shift and go to state 41
+    FINISHER        shift and go to state 35
 
 
 state 35
 
-    (14) expression -> GETPOLYPEPTIDES FINVOCATION STRING . FINISHER
+    (11) expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .
 
-    FINISHER        shift and go to state 42
-
-
-state 36
-
-    (15) expression -> GETAMINOACIDSINFO FINVOCATION STRING . FINISHER
-
-    FINISHER        shift and go to state 43
-
-
-state 37
-
-    (16) expression -> MOLECULARWEIGHT FINVOCATION STRING . FINISHER
-
-    FINISHER        shift and go to state 44
-
-
-state 38
-
-    (17) expression -> CALCAMINOACIDS FINVOCATION STRING . FINISHER
-
-    FINISHER        shift and go to state 45
-
-
-state 39
-
-    (11) expression -> INFOID FINVOCATION STRING FINISHER .
-
-    PLUS            reduce using rule 11 (expression -> INFOID FINVOCATION STRING FINISHER .)
-    MINUS           reduce using rule 11 (expression -> INFOID FINVOCATION STRING FINISHER .)
-    TIMES           reduce using rule 11 (expression -> INFOID FINVOCATION STRING FINISHER .)
-    DIVIDE          reduce using rule 11 (expression -> INFOID FINVOCATION STRING FINISHER .)
-    $end            reduce using rule 11 (expression -> INFOID FINVOCATION STRING FINISHER .)
-
-
-state 40
-
-    (12) expression -> MODEL FINVOCATION STRING FINISHER .
-
-    PLUS            reduce using rule 12 (expression -> MODEL FINVOCATION STRING FINISHER .)
-    MINUS           reduce using rule 12 (expression -> MODEL FINVOCATION STRING FINISHER .)
-    TIMES           reduce using rule 12 (expression -> MODEL FINVOCATION STRING FINISHER .)
-    DIVIDE          reduce using rule 12 (expression -> MODEL FINVOCATION STRING FINISHER .)
-    $end            reduce using rule 12 (expression -> MODEL FINVOCATION STRING FINISHER .)
-
-
-state 41
-
-    (13) expression -> GETFILE FINVOCATION STRING COMMA . STRING FINISHER
-
-    STRING          shift and go to state 46
-
-
-state 42
-
-    (14) expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .
-
-    PLUS            reduce using rule 14 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
-    MINUS           reduce using rule 14 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
-    TIMES           reduce using rule 14 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
-    DIVIDE          reduce using rule 14 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
-    $end            reduce using rule 14 (expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER .)
-
-
-state 43
-
-    (15) expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .
-
-    PLUS            reduce using rule 15 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
-    MINUS           reduce using rule 15 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
-    TIMES           reduce using rule 15 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
-    DIVIDE          reduce using rule 15 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
-    $end            reduce using rule 15 (expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER .)
-
-
-state 44
-
-    (16) expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .
-
-    PLUS            reduce using rule 16 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
-    MINUS           reduce using rule 16 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
-    TIMES           reduce using rule 16 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
-    DIVIDE          reduce using rule 16 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
-    $end            reduce using rule 16 (expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER .)
-
-
-state 45
-
-    (17) expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER .
-
-    PLUS            reduce using rule 17 (expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER .)
-    MINUS           reduce using rule 17 (expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER .)
-    TIMES           reduce using rule 17 (expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER .)
-    DIVIDE          reduce using rule 17 (expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER .)
-    $end            reduce using rule 17 (expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER .)
-
-
-state 46
-
-    (13) expression -> GETFILE FINVOCATION STRING COMMA STRING . FINISHER
-
-    FINISHER        shift and go to state 47
-
-
-state 47
-
-    (13) expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .
-
-    PLUS            reduce using rule 13 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
-    MINUS           reduce using rule 13 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
-    TIMES           reduce using rule 13 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
-    DIVIDE          reduce using rule 13 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
-    $end            reduce using rule 13 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
+    PLUS            reduce using rule 11 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
+    MINUS           reduce using rule 11 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
+    TIMES           reduce using rule 11 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
+    DIVIDE          reduce using rule 11 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
+    $end            reduce using rule 11 (expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 28 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 28 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 28 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 28 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 29 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 29 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 29 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 29 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 30 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 30 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 30 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 30 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 31 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 31 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 31 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 31 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 22 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 22 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 22 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 22 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 23 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 23 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 24 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 24 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 24 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 25 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 25 resolved as shift

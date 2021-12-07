@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CALCAMINOACIDS COMMA DICTIONARY DIVIDE EQUALS FINISHER FINVOCATION GETAMINOACIDSINFO GETFILE GETPOLYPEPTIDES IDENTIFIER INFOID MINUS MODEL MOLECULARWEIGHT NUMBER PLUS STRING TIMESstatement : IDENTIFIER EQUALS expressionstatement : expressionexpression : IDENTIFIERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression TIMES expressionexpression : expression DIVIDE expressionexpression : NUMBERexpression : STRINGexpression : DICTIONARYexpression : INFOID FINVOCATION STRING FINISHERexpression : MODEL FINVOCATION STRING FINISHERexpression : GETFILE FINVOCATION STRING COMMA STRING FINISHERexpression : GETPOLYPEPTIDES FINVOCATION STRING FINISHERexpression : GETAMINOACIDSINFO FINVOCATION STRING FINISHERexpression : MOLECULARWEIGHT FINVOCATION STRING FINISHERexpression : CALCAMINOACIDS FINVOCATION STRING FINISHER'
+_lr_signature = 'COMMA DICTIONARY DIVIDE EQUALS FINISHER FINVOCATION GETAMINOACIDSINFO GETFILE GETPOLYPEPTIDES IDENTIFIER MINUS MOLECULARWEIGHT NUMBER PLUS STRING TIMESstatement : IDENTIFIER EQUALS expressionstatement : expressionexpression : IDENTIFIERexpression : expression PLUS expressionexpression : expression MINUS expressionexpression : expression TIMES expressionexpression : expression DIVIDE expressionexpression : NUMBERexpression : STRINGexpression : DICTIONARYexpression : GETFILE FINVOCATION STRING COMMA STRING FINISHERexpression : GETPOLYPEPTIDES FINVOCATION STRING FINISHERexpression : GETAMINOACIDSINFO FINVOCATION STRING FINISHERexpression : MOLECULARWEIGHT FINVOCATION STRING FINISHER'
     
-_lr_action_items = {'IDENTIFIER':([0,14,15,16,17,18,],[2,26,26,26,26,26,]),'NUMBER':([0,14,15,16,17,18,],[4,4,4,4,4,4,]),'STRING':([0,14,15,16,17,18,19,20,21,22,23,24,25,41,],[5,5,5,5,5,5,32,33,34,35,36,37,38,46,]),'DICTIONARY':([0,14,15,16,17,18,],[6,6,6,6,6,6,]),'INFOID':([0,14,15,16,17,18,],[7,7,7,7,7,7,]),'MODEL':([0,14,15,16,17,18,],[8,8,8,8,8,8,]),'GETFILE':([0,14,15,16,17,18,],[9,9,9,9,9,9,]),'GETPOLYPEPTIDES':([0,14,15,16,17,18,],[10,10,10,10,10,10,]),'GETAMINOACIDSINFO':([0,14,15,16,17,18,],[11,11,11,11,11,11,]),'MOLECULARWEIGHT':([0,14,15,16,17,18,],[12,12,12,12,12,12,]),'CALCAMINOACIDS':([0,14,15,16,17,18,],[13,13,13,13,13,13,]),'$end':([1,2,3,4,5,6,26,27,28,29,30,31,39,40,42,43,44,45,47,],[0,-3,-2,-8,-9,-10,-3,-1,-4,-5,-6,-7,-11,-12,-14,-15,-16,-17,-13,]),'EQUALS':([2,],[14,]),'PLUS':([2,3,4,5,6,26,27,28,29,30,31,39,40,42,43,44,45,47,],[-3,15,-8,-9,-10,-3,15,15,15,15,15,-11,-12,-14,-15,-16,-17,-13,]),'MINUS':([2,3,4,5,6,26,27,28,29,30,31,39,40,42,43,44,45,47,],[-3,16,-8,-9,-10,-3,16,16,16,16,16,-11,-12,-14,-15,-16,-17,-13,]),'TIMES':([2,3,4,5,6,26,27,28,29,30,31,39,40,42,43,44,45,47,],[-3,17,-8,-9,-10,-3,17,17,17,17,17,-11,-12,-14,-15,-16,-17,-13,]),'DIVIDE':([2,3,4,5,6,26,27,28,29,30,31,39,40,42,43,44,45,47,],[-3,18,-8,-9,-10,-3,18,18,18,18,18,-11,-12,-14,-15,-16,-17,-13,]),'FINVOCATION':([7,8,9,10,11,12,13,],[19,20,21,22,23,24,25,]),'FINISHER':([32,33,35,36,37,38,46,],[39,40,42,43,44,45,47,]),'COMMA':([34,],[41,]),}
+_lr_action_items = {'IDENTIFIER':([0,11,12,13,14,15,],[2,20,20,20,20,20,]),'NUMBER':([0,11,12,13,14,15,],[4,4,4,4,4,4,]),'STRING':([0,11,12,13,14,15,16,17,18,19,30,],[5,5,5,5,5,5,26,27,28,29,34,]),'DICTIONARY':([0,11,12,13,14,15,],[6,6,6,6,6,6,]),'GETFILE':([0,11,12,13,14,15,],[7,7,7,7,7,7,]),'GETPOLYPEPTIDES':([0,11,12,13,14,15,],[8,8,8,8,8,8,]),'GETAMINOACIDSINFO':([0,11,12,13,14,15,],[9,9,9,9,9,9,]),'MOLECULARWEIGHT':([0,11,12,13,14,15,],[10,10,10,10,10,10,]),'$end':([1,2,3,4,5,6,20,21,22,23,24,25,31,32,33,35,],[0,-3,-2,-8,-9,-10,-3,-1,-4,-5,-6,-7,-12,-13,-14,-11,]),'EQUALS':([2,],[11,]),'PLUS':([2,3,4,5,6,20,21,22,23,24,25,31,32,33,35,],[-3,12,-8,-9,-10,-3,12,12,12,12,12,-12,-13,-14,-11,]),'MINUS':([2,3,4,5,6,20,21,22,23,24,25,31,32,33,35,],[-3,13,-8,-9,-10,-3,13,13,13,13,13,-12,-13,-14,-11,]),'TIMES':([2,3,4,5,6,20,21,22,23,24,25,31,32,33,35,],[-3,14,-8,-9,-10,-3,14,14,14,14,14,-12,-13,-14,-11,]),'DIVIDE':([2,3,4,5,6,20,21,22,23,24,25,31,32,33,35,],[-3,15,-8,-9,-10,-3,15,15,15,15,15,-12,-13,-14,-11,]),'FINVOCATION':([7,8,9,10,],[16,17,18,19,]),'COMMA':([26,],[30,]),'FINISHER':([27,28,29,34,],[31,32,33,35,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,14,15,16,17,18,],[3,27,28,29,30,31,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,11,12,13,14,15,],[3,21,22,23,24,25,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -37,11 +37,8 @@ _lr_productions = [
   ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',48),
   ('expression -> STRING','expression',1,'p_expression_string','parser.py',53),
   ('expression -> DICTIONARY','expression',1,'p_expression_dictionary','parser.py',58),
-  ('expression -> INFOID FINVOCATION STRING FINISHER','expression',4,'p_expression_infoID','parser.py',63),
-  ('expression -> MODEL FINVOCATION STRING FINISHER','expression',4,'p_expression_model','parser.py',69),
-  ('expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER','expression',6,'p_expression_getFile','parser.py',75),
-  ('expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER','expression',4,'p_expression_getPolypeptides','parser.py',81),
-  ('expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER','expression',4,'p_expression_getAminoAcidsInfo','parser.py',87),
-  ('expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER','expression',4,'p_expression_MolecularWeight','parser.py',93),
-  ('expression -> CALCAMINOACIDS FINVOCATION STRING FINISHER','expression',4,'p_expression_calcAminoAcids','parser.py',99),
+  ('expression -> GETFILE FINVOCATION STRING COMMA STRING FINISHER','expression',6,'p_expression_getFile','parser.py',63),
+  ('expression -> GETPOLYPEPTIDES FINVOCATION STRING FINISHER','expression',4,'p_expression_getPolypeptides','parser.py',69),
+  ('expression -> GETAMINOACIDSINFO FINVOCATION STRING FINISHER','expression',4,'p_expression_getAminoAcidsInfo','parser.py',75),
+  ('expression -> MOLECULARWEIGHT FINVOCATION STRING FINISHER','expression',4,'p_expression_MolecularWeight','parser.py',81),
 ]

@@ -26,7 +26,9 @@ end = "\033[0;0m"
 def getFile(ID, path):
     # Searching for the pdb file
     pdbServer = PDBList()
+    blockPrint()
     pdbServer.retrieve_pdb_file(ID, pdir=path, file_format='mmCif')
+    enablePrint()
     return("The file has been saved in " + path)
 
 
@@ -109,10 +111,12 @@ def getAminoAcidsInfo(ID):
 # Methods in process
 def getResidues(ID):
     pdb = PDBList()
+    enablePrint()
     pdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
     fileName = ID + ".cif"
     mmcif_Parser = MMCIFParser(QUIET=True)
     structure = mmcif_Parser.get_structure(ID, fileName.lower())
+    enablePrint()
     for model in structure:
         for residue in model.get_residues():
             print(residue)
