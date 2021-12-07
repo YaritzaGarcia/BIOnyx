@@ -95,8 +95,6 @@ def p_expression_MolecularWeight(p):
     MolecularWeight(p[3], "")
 
 # Error rule for syntax errors
-
-
 def p_error(p):
     print("Syntax error in input!")
 

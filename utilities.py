@@ -8,14 +8,10 @@ import sys
 import os
 
 # Disable
-
-
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
 
 # Restore
-
-
 def enablePrint():
     sys.stdout = sys.__stdout__
 
@@ -27,8 +23,6 @@ end = "\033[0;0m"
 # https://www.tutorialspoint.com/biopython/biopython_pdb_module.htm
 
 # Methods that are working
-
-
 def getFile(ID, path):
     # Searching for the pdb file
     pdbServer = PDBList()
@@ -37,7 +31,6 @@ def getFile(ID, path):
 
 
 def getPolypeptides(ID):
-
     # Creating rows for the Polypeptide table
     polypeptidesRows = [
         ["Polypeptide Number", "Polypeptide Sequence", "Sequence Length"]]
@@ -114,8 +107,6 @@ def getAminoAcidsInfo(ID):
     return resultDict
 
 # Methods in process
-
-
 def getResidues(ID):
     pdb = PDBList()
     pdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
@@ -128,10 +119,6 @@ def getResidues(ID):
 # MW = molecular weight
 # This functions returns an array of tuples that contains the sequence and its molecular weight
 # for the given protein
-
-
-# def calcAminoAcids(ID):
-#     return MolecularWeight(ID, "Calcalc_amino_acids")
 
 
 def MolecularWeight(ID, method):
@@ -161,46 +148,3 @@ def MolecularWeight(ID, method):
     mwTable.add_rows(mwRows)
     mwTable.set_cols_align(['c', 'c', 'c'])
     print(mwTable.draw())
-
-
-# MolecularWeight("1atp", "calc_amino_acids")
-
-
-# getResidues("1atp")
-
-
-def infoID(ID):
-    idPdb = PDBList()
-    idPdb.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
-    fileName = ID + ".cif"
-    # mmcif_dict = MMCIF2Dict(fileName)
-    mmcif_Parser = MMCIFParser(QUIET=True)
-    idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
-    # for idModel in idStructure:
-    #     for residue in idModel.get_residues():
-    #         print(residue)
-    residues = idStructure.get_residues()  # returns a generator object
-    [print(item) for item in residues]
-
-# infoID("1atp")
-
-
-def model(ID):
-    # Searching for the pdb file
-    pdbServer = PDBList()
-    pdbServer.retrieve_pdb_file(ID, pdir='.', file_format='mmCif')
-
-    # Getting the protein structure
-    mmcif_Parser = MMCIFParser(QUIET=True)
-    fileName = ID + ".cif"
-    idStructure = mmcif_Parser.get_structure(ID, fileName.lower())
-
-    for model in idStructure:
-        for chain in model:
-            print('%s - Chain: %s. Number of residues: %d. Number of atoms: %d.')
-
-    # # Modeling the protein structure
-    # idModel = nv.show_biopython(idStructure)
-    # return(idModel)
-
-# model("2FAT")
